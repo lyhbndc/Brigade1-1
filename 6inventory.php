@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_POST['itemID'])) {
-        // Update item
+        // Get form data
         $itemID = $_POST['itemID'];
         $small = $_POST['small'];
         $medium = $_POST['medium'];
@@ -50,20 +50,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $twoXL = $_POST['twoXL'];
         $threeXL = $_POST['threeXL'];
         $price = $_POST['price'];
-
-        $stmt = $conn->prepare("UPDATE inventory SET small = ?, medium = ?, large = ?, extraLarge = ?, twoXL = ?, threeXL = ?, price = ? WHERE itemID = ?");
-        if (!$stmt) {
-            die("Error preparing statement: " . $conn->error);
-        }
-
-        $stmt->bind_param("iiiiiidi", $small, $medium, $large, $extraLarge, $twoXL, $threeXL, $price, $itemID);
+    
+        // Fetch current values from the database
+        $query = "SELECT small, medium, large, extraLarge, twoXL, threeXL, quantity FROM inventory WHERE itemID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $itemID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $current = $result->fetch_assoc();
+        
+        // Calculate the total difference in quantity
+        $currentTotal = $current['quantity'];
+        $currentSizesSum = $current['small'] + $current['medium'] + $current['large'] + 
+                           $current['extraLarge'] + $current['twoXL'] + $current['threeXL'];
+        $newSizesSum = $small + $medium + $large + $extraLarge + $twoXL + $threeXL;
+        $quantityDifference = $newSizesSum - $currentSizesSum;
+    
+        // Update the database
+        $updateQuery = "UPDATE inventory 
+                        SET small = ?, medium = ?, large = ?, extraLarge = ?, twoXL = ?, threeXL = ?, price = ?, quantity = quantity + ? 
+                        WHERE itemID = ?";
+        $stmt = $conn->prepare($updateQuery);
+        $stmt->bind_param("iiiiiidii", $small, $medium, $large, $extraLarge, $twoXL, $threeXL, $price, $quantityDifference, $itemID);
+        
         if ($stmt->execute()) {
             header("Location: 6inventory.php");
             exit;
         } else {
             echo "Error updating record: " . $stmt->error;
         }
-    }
+    }    
 
     if (isset($_POST['deleteitemID'])) {
         // Delete item
