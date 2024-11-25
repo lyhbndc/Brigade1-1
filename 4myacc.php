@@ -66,86 +66,8 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
     <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="styles/single_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/acc.css">
     <link rel="stylesheet" type="text/css" href="styles/single_responsive.css">
-    <style>
-        body {
-            background-color: white;
-            color: black;
-        }
-        h2 {
-            margin-bottom: 20px;
-            font-size: 30px;
-            color: black;
-            font-weight: bold;
-        }
-        .footer-logo{
-           cursor: default; 
-        }
-        .account-container {
-        width: 80%;
-        max-width: 900px;
-        margin: 0 auto;
-        font-family: Arial, sans-serif;
-        color: #333;
-    }
-    .logout {
-        color: #333;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .account-content {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 0;
-    }
-
-    .order-history, .account-details {
-        width: 48%;
-    }
-
-    .order-history h2, .account-details h2 {
-        font-size: 16px;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        color: #333;
-    }
-
-    .order-history p, .account-details p {
-        font-size: 14px;
-        margin: 10px 0;
-        color: #666;
-    }
-
-    .view-addresses {
-        color: #333;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: bold;
-    }
-    .title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 0;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .title h1 {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 0;
-    }
-    .edit-profile-form {
-            display: none;
-        }
-        .edit-profile-form.visible {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
@@ -153,7 +75,6 @@ mysqli_close($conn);
     <div class="super_container">
         <header class="header trans_300">
             <!-- Top Navigation -->
-            <div class="top_nav">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -169,7 +90,6 @@ mysqli_close($conn);
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- Main Navigation -->
             <div class="main_nav_container">
                 <div class="container">
@@ -232,50 +152,66 @@ mysqli_close($conn);
             </div>
         </div>
         <br><br><br><br><br><br><br>
-                    <div class="title">
-                    <div class="account-container">
-                        <h1>My Account</h1>
-</div>
-                    <div class="account-details">
-    <h2>Account Details</h2>
-    <p><strong>Name:</strong> <span><?php echo $fullname; ?></span></p>
-    <p><strong>Email:</strong> <span><?php echo $email; ?></span></p>
-    <p><strong>Address:</strong> <span><?php echo $address; ?></span></p>
-    <p><strong>City:</strong> <span><?php echo $city; ?></span></p>
-    <p><strong>Country:</strong> <span>Philippines</span></p>
-    <button onclick="toggleEditForm()">Edit Profile</button>
+        <div class="title">
+        <div class="account-container">
+    <h1>My Account</h1>
+    
+    <!-- Account Details Section -->
+    <div class="account-profile" id="accountDetails">
+        <div class="user-details">
+            <div class="profile-header">
+                <!-- Profile Picture -->
+                <img src="assets\ano.webp" class="profile-pic">
+                
+                <!-- User Details -->
+                <div class="user-info">
+                    <p><strong>Name:</strong><br><span id="name"><?php echo $fullname; ?></span></p>
+                    <p><strong>Email:</strong><br><span id="email"><?php echo $email; ?></span></p>
+                    <p><strong>Address:</strong><br><span id="address"><?php echo $address; ?></span></p>
+                    <p><strong>City:</strong><br><span id="city"><?php echo $city; ?></span></p>
+                    <p><strong>Country:</strong><br><span>Philippines</span></p>
+                </div>
+            </div>
+        </div>
+        <button class="recent-order-btn" onclick="editProfile()">Edit Profile</button>
+        <button class="recent-order-btn" onclick="window.location.href='4recentorders.php';">Recent Orders</button>
+        <button class="recent-order-btn">Logout</button>
+        <button class="recent-order-btn">Delete Account</button>
     </div>
-    <div class="edit-profile-form" id="editProfileForm">
-            <form method="post">
-                <label for="firstname">First Name:</label>
-                <input type="text" name="firstname" value="<?php echo htmlspecialchars($firstname); ?>" required>
-                
-                <label for="lastname">Last Name:</label>
-                <input type="text" name="lastname" value="<?php echo htmlspecialchars($lastname); ?>" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-                
-                <label for="address">Address:</label>
-                <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>" required>
-                
-                <label for="city">City:</label>
-                <input type="text" name="city" value="<?php echo htmlspecialchars($city); ?>" required>
 
-                <button type="submit" name="update_profile">Save Changes</button>
-                <button type="button" onclick="toggleEditForm()">Cancel</button>
-            </form>
+    <!-- Edit Profile Form Section -->
+    <div class="edit-profile-form" id="editProfileForm" style="display: none;">
+        <form method="post">
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" id="editFirstname" value="<?php echo htmlspecialchars($firstname); ?>" required><br>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="editLastname" value="<?php echo htmlspecialchars($lastname); ?>" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="editEmail" value="<?php echo htmlspecialchars($email); ?>" required><br>
+
+            <label for="address">Address:</label>
+            <input type="text" name="address" id="editAddress" value="<?php echo htmlspecialchars($address); ?>" required><br>
+
+            <label for="city">City:</label>
+            <input type="text" name="city" id="editCity" value="<?php echo htmlspecialchars($city); ?>" required>
+
+            <button type="submit" name="update_profile">Save Changes</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+        </form>
+    </div>
 </div>
+
                     </div>
-                    <br><br><br><br><br><br><br>
+
                 </div>   
                 </div>   
-                    </table>
+            
                   
                      
             
         <!-- Footer -->
-        <br><br><br><br>
         <footer style="background-color: black; color: white;" class="bg3 p-t-75 p-b-32">
             <div class="container">
                 <div class="row">
@@ -414,14 +350,20 @@ document.querySelectorAll('.action-button').forEach(button => {
 });
 
 </script>
-
 <script>
-        // JavaScript to toggle the visibility of the edit form
-        function toggleEditForm() {
-            const form = document.getElementById('editProfileForm');
-            form.classList.toggle('visible');
-        }
-    </script>
+function editProfile() {
+    // Hide the account details and show the edit form
+    document.getElementById('accountDetails').style.display = 'none';
+    document.getElementById('editProfileForm').style.display = 'block';
+}
+
+function cancelEdit() {
+    // Hide the edit form and show the account details again
+    document.getElementById('editProfileForm').style.display = 'none';
+    document.getElementById('accountDetails').style.display = 'block';
+}
+</script>
+
 
 </body>
 </html>

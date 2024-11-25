@@ -25,13 +25,7 @@ if (isset($_POST['next'])) {
         $email = $_POST['email'];
         $user = $_POST['username'];
         $pass = $_POST['password'];
- // Check if the email already exists
- $check_email_query = "SELECT * FROM user WHERE email = '$email'";
- $email_result = mysqli_query($conn, $check_email_query);
 
- if (mysqli_num_rows($email_result) > 0) {
-     echo "The email address is already registered. Please use a different email.";
- } else {
         // Generate a random 6-digit verification code
         $verification_code = mt_rand(100000, 999999);
 
@@ -72,7 +66,6 @@ if (isset($_POST['next'])) {
         } else {
             echo "Error: " . mysqli_error($conn);
         }
-    }
     } else {
         echo "Please fill in all fields.";
     }
@@ -92,7 +85,7 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
     <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="styles/single_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/single_responsive.css">
     <style>
         body {
@@ -105,7 +98,7 @@ mysqli_close($conn);
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             width: 600px;
-            margin: 30px auto; /* Center the form */
+            margin: 150px auto; /* Center the form */
             text-align: center;
         }
         h2 {
@@ -175,6 +168,17 @@ mysqli_close($conn);
         .footer-logo{
            cursor: default; 
         }
+        .form-control{
+            width: 100%;
+            padding: 7px;
+            margin: 15px 0;
+            border: 1px solid #444;
+            border-radius: 20px;
+            background-color: white;
+            color: gray;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
     </style>
 </head>
 
@@ -183,7 +187,7 @@ mysqli_close($conn);
     <div class="super_container">
         <header class="header trans_300">
             <!-- Top Navigation -->
-            <div class="top_nav">
+
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -199,7 +203,7 @@ mysqli_close($conn);
                         </div>
                     </div>
                 </div>
-            </div>
+
             <!-- Main Navigation -->
             <div class="main_nav_container">
                 <div class="container">
@@ -265,10 +269,19 @@ mysqli_close($conn);
                                 <input type="text" id="address" name="address" class="form-control" required>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="city">City:</label>
-                                    <input type="text" id="city" name="city" class="form-control" required>
-                                </div>
+            <div class="form-group col-md-6">
+                <label for="city">City:</label>
+                <select id="city" name="city" class="form-control" required>
+                    <option value="" disabled selected>Select your city</option>
+                    <option value="New York">New York</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Houston">Houston</option>
+                    <option value="Miami">Miami</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="Seattle">Seattle</option>
+                </select>
+            </div>
                                 <div class="form-group col-md-6">
                                     <label for="zip">Zip Code:</label>
                                     <input type="text" id="zip" name="zip_code" class="form-control" required>
@@ -321,7 +334,7 @@ mysqli_close($conn);
         </div>
 
         <!-- Footer -->
-        <br><br><br><br>
+
         <footer style="background-color: black; color: white;" class="bg3 p-t-75 p-b-32">
             <div class="container">
                 <div class="row">
@@ -389,6 +402,18 @@ mysqli_close($conn);
 }
 
     </script>
+     <script>
+    // JavaScript to make the navbar opaque when scrolling
+    window.addEventListener('scroll', function() {
+        const mainNav = document.querySelector('.main_nav_container');
+        
+        if (window.scrollY > 50) { // Adjust the scroll threshold as needed
+            mainNav.classList.add('opaque');
+        } else {
+            mainNav.classList.remove('opaque');
+        }
+    });
+</script>
 
 <script>
         function checkPasswordStrength() {

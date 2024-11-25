@@ -19,15 +19,15 @@ if (!$user) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
     <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="styles/single_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/single_responsive.css">
     <style>
-        .cart-page-container {
+    .cart-page-container {
     display: flex;
     justify-content: center;
     gap: 20px;
     max-width: 800px;
-    margin: 50px auto;
+    margin: 200px auto;
 }
 
 .cart-container {
@@ -122,7 +122,6 @@ if (!$user) {
     <div class="super_container">
         <header class="header trans_300">
             <!-- Top Navigation -->
-            <div class="top_nav">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -138,7 +137,7 @@ if (!$user) {
                         </div>
                     </div>
                 </div>
-            </div>
+
             <!-- Main Navigation -->
             <div class="main_nav_container">
                 <div class="container">
@@ -237,7 +236,6 @@ if (!$user) {
 
 
         <!-- Footer -->
-        <br><br><br><br>
         <footer style="background-color: black; color: white;" class="bg3 p-t-75 p-b-32">
             <div class="container">
                 <div class="row">

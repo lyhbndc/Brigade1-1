@@ -236,7 +236,7 @@ mysqli_close($conn);
                             
                             <input type="submit" name="login" value="Login">
                             <div class="forgot-password">
-                                <a href="7forgotpass.php">Forgot Password?</a>
+                                <a href="#">Forgot Password?</a>
                             </div>
                             <br>
                             <div class="sign-up-link">
@@ -245,7 +245,6 @@ mysqli_close($conn);
                         </form>
                         <?php if (!empty($error_message)): ?>
                         <div id="toast" class="toast"><?php echo $error_message; ?></div>
-                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -337,5 +336,6 @@ mysqli_close($conn);
                 toast.classList.remove("show");
             }, 3000); // Toast is visible for 3 seconds
         </script>
+    <?php endif; ?>
 </body>
 </html>

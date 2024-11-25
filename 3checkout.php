@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $query = "INSERT INTO `order` (OrderID, Customer, Product, Quantity, Size, Status, Total, Date, Address)
-                  VALUES ('$orderID', '$fullname', '$product', '$quantity', '$size', '$status', '$totalAmount', NOW(), '$address')";
+                  VALUES ('$orderID', '$fullname', '$product', '$quantity', '$size', '$status', '$total', NOW(), '$address')";
         $result = mysqli_query($conn, $query);
 
         if (!$result) {
@@ -138,17 +138,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
      // Determine shipping cost
      if ($totalAmount >= $freeShippingThreshold) {
-        $shippingCost = 0; // Free shipping for orders ₱1500 or above
+        $shippingCost = 0; 
     }
 
     $totalAmount += $shippingCost; 
-    
-    $finalQuery = "UPDATE `order` SET Total = '$totalAmount' WHERE OrderID = '$orderID'";
-    $finalResult = mysqli_query($conn, $finalQuery);
-
-    if (!$finalResult) {
-        die("Error updating total amount in order table: " . mysqli_error($conn));
-    }
 
 
 
@@ -177,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
     <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="styles/single_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/single_responsive.css">
     <style>
         .checkout-container {
@@ -232,13 +225,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
+<div class="super_container">
 
-    <div class="super_container">
-        <header class="header trans_300">
-            <div class="main_nav_container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-right">
+	<header class="header trans_300">
+		<div class="top_nav">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+					<div class="top_nav_left">
+        </div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="main_nav_container">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-right">
                             <div class="logo_container">
                                 <a href="1index.php"><img src="assets/1.png"></a>
                             </div>

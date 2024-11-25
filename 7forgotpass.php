@@ -60,7 +60,7 @@ mysqli_close($conn);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            width: 350px;
+            width: 400px;
             margin: 170px auto; 
             text-align: center;
         }
@@ -223,34 +223,29 @@ mysqli_close($conn);
                 <div class="col">
                     <!-- Login Form -->
                     <div class="login-container">
-                        <img src="assets/2.png" class="footer-logo">
-                        <form method="POST">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" required>
-                            
-                            <label for="password">Password:</label>
-                            <div style="position: relative;">
-                                <input type="password" id="password" name="password" required>
-                                <i id="toggle-password-icon" class="fa fa-eye toggle-password" onclick="togglePassword()"></i>
-                            </div>
-                            
-                            <input type="submit" name="login" value="Login">
-                            <div class="forgot-password">
-                                <a href="7forgotpass.php">Forgot Password?</a>
-                            </div>
-                            <br>
-                            <div class="sign-up-link">
-                               <a>Don't have an account? </a> <a href="4signup.php">Sign up</a>
-                            </div>
-                        </form>
-                        <?php if (!empty($error_message)): ?>
-                        <div id="toast" class="toast"><?php echo $error_message; ?></div>
-                        <?php endif; ?>
-                    </div>
+    <h4>Change your password</h4>
+    <p>Enter a new password below to change your password</p>
+    <form method="POST">
+        <!-- New Password -->
+        <label for="new-password">New Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="new-password" name="new-password" required>
+            <i id="toggle-new-password-icon" class="fa fa-eye toggle-password" onclick="togglePassword('new-password', 'toggle-new-password-icon')"></i>
+        </div>
+
+        <!-- Confirm Password -->
+        <label for="confirm-password">Confirm Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <i id="toggle-confirm-password-icon" class="fa fa-eye toggle-password" onclick="togglePassword('confirm-password', 'toggle-confirm-password-icon')"></i>
+        </div>
+
+        <input type="submit" name="changepass" value="Change Password">
+    </form>
+</div>
                 </div>
             </div>
         </div>
-
         <!-- Footer -->
         <footer style="background-color: black; color: white;" class="bg3 p-t-75 p-b-32">
             <div class="container">
@@ -304,20 +299,22 @@ mysqli_close($conn);
         </footer>
     </div>
     <script>
-        function togglePassword() {
-            const passwordField = document.getElementById('password');
-            const toggleIcon = document.getElementById('toggle-password-icon');
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            }
+    function togglePassword(passwordFieldId, toggleIconId) {
+        const passwordField = document.getElementById(passwordFieldId);
+        const toggleIcon = document.getElementById(toggleIconId);
+
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
         }
-    </script>
+    }
+</script>
+
     <script>
     // JavaScript to make the navbar opaque when scrolling
     window.addEventListener('scroll', function() {
