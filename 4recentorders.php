@@ -160,78 +160,6 @@ mysqli_close($conn);
     <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="styles/recent.css">
     <link rel="stylesheet" type="text/css" href="styles/single_responsive.css">
-    <style>
-        body {
-            background-color: white;
-            color: black;
-        }
-        h2 {
-            margin-bottom: 20px;
-            font-size: 30px;
-            color: black;
-            font-weight: bold;
-        }
-        .footer-logo{
-           cursor: default; 
-        }
-        .account-container {
-        width: 80%;
-        max-width: 900px;
-        margin: 0 auto;
-        font-family: Arial, sans-serif;
-        color: #333;
-    }
-    .logout {
-        color: #333;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .account-content {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 0;
-    }
-
-    .order-history, .account-details {
-        width: 48%;
-    }
-
-    .order-history h2, .account-details h2 {
-        font-size: 16px;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        color: #333;
-    }
-
-    .order-history p, .account-details p {
-        font-size: 14px;
-        margin: 10px 0;
-        color: #666;
-    }
-
-    .view-addresses {
-        color: #333;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: bold;
-    }
-    .title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 0;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .title h1 {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 0;
-    }
-    </style>
 </head>
 
 <body>
@@ -352,14 +280,11 @@ mysqli_close($conn);
     <?php endif; ?>
 </tbody>
 </div>
-</table>
-                   
+    </table>                
+</div>
 </div>
                     </div>
-                    <br><br><br><br><br><br><br>
-                </div>   
-                </div>   
-                
+    </div>
                   
                      
             

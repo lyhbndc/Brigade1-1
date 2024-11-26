@@ -755,136 +755,164 @@ video {
 }
 
 .account-container {
-    width: 90%;
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	width: 80%;
+	max-width: 900px;
+	margin: 0 auto;
+	font-family: Arial, sans-serif;
+	color: #333;
+}
+.logout {
+	color: #333;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
 }
 
-.account-container h1 {
-    font-size: 36px;
+.account-content {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 0;
+}
+
+.order-history, .account-details {
+	width: 48%;
+}
+
+.order-history h2, .account-details h2 {
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	color: #333;
+}
+
+.order-history p, .account-details p {
+	font-size: 14px;
+	margin: 10px 0;
+	color: #666;
+}
+
+.view-addresses {
+	color: #333;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+}
+.title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+.title h1 {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Table Header Styling */
+.table thead {
+    background-color: #343a40; /* Dark header */
+    color: #fff;
+}
+
+.table thead th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Table Body Styling */
+.table tbody {
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #e9ecef; /* Stripe rows */
+}
+
+.table tbody tr:hover {
+    background-color: #e2e6ea; /* Hover effect */
+}
+
+/* Table Cells Styling */
+.table td {
+    padding: 10px 15px;
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+}
+
+/* Badge Styling for Order Status */
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #ffc107;
     color: black;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
 }
 
-.account-profile {
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-.profile-header {
+/* Action Buttons Container */
+.button-container {
     display: flex;
-    align-items: flex-start;
-    margin-top: 30px; /* Align items to the top of the container */
-    justify-content: center; /* Center everything horizontally in the container */
-    gap: 130px; /* Space between image and user details */
-}
-
-.profile-pic {
-    width: 300px; 
-    height: 300px;
-    border-radius: 50%; /* Make the image circular */
-    object-fit: cover; /* Ensures the image is not distorted */
-    margin-top: 20px; 
-   
-}
-.user-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.user-info p {
-    font-size: 16px;
-    margin: 10px 0;
-    color: #333;
-}
-
-.user-info span {
-    color: #666;
-}
-
-.recent-order-btn {
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 15px 30px; /* Adjust padding for consistent sizing */
-    margin: 40px 0; /* Space between buttons */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
     gap: 10px;
-    width: 200px; /* Set a fixed width for all buttons */
-    text-align: center;
 }
 
-.recent-order-btn:hover {
-    background-color: gray;
-}
-
-.edit-profile-form {
-    display: none;
-    width: 100%;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.edit-profile-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
+/* Action Buttons Styling */
+.btn {
+    padding: 6px 12px;
+    font-size: 0.875rem;
     border-radius: 4px;
-    font-size: 16px;
-}
-
-.edit-profile-form button {
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    margin-top: 10px;
     cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
-.edit-profile-form button:hover {
-    background-color: gray;
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 0.75rem;
 }
 
-@media screen and (max-width: 768px) {
-    .account-container {
-        width: 95%;
-        padding: 20px;
-    }
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
 
-    .profile-header {
-        flex-direction: column; /* Stack the image and text vertically on smaller screens */
-        align-items: center;
-    }
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+}
 
-    .profile-pic {
-        width: 300px; /* Adjust the size of the profile picture on smaller screens */
-        height: 300px;
-    }
-    
-    .recent-order-btn {
-        width: 100%;
-        margin: 10px 0;
-    }
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Button Hover Effects */
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* Centering No Orders Message */
+.text-center {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-size: 1rem;
 }

@@ -176,7 +176,7 @@ mysqli_close($conn);
         <button class="recent-order-btn" onclick="editProfile()">Edit Profile</button>
         <button class="recent-order-btn" onclick="window.location.href='4recentorders.php';">Recent Orders</button>
         <button class="recent-order-btn">Logout</button>
-        <button class="recent-order-btn">Delete Account</button>
+        <button class="del">Delete Account</button>
     </div>
 
     <!-- Edit Profile Form Section -->
